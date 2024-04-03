@@ -13,7 +13,7 @@ tw (function y =exp(x)/(1+exp(x)), range(-5 5)) ///
 * hetero : v(u_i)=x_i*b*(1-x_i*b) for i=1,2,...,n
 ********************************************************************************
 
-cd "C:\Users\Yao Thibaut Kpegli\Desktop\ENS Lyon\Econometrics-Discrete-Choice-Models\Binary Outcome Models"
+cd "C:\Users\Yao Thibaut Kpegli\Desktop\Bureau\ENS cours\M2\Seance 2"
 clear all
 use mus14data.dta , clear
 
@@ -22,7 +22,7 @@ keep ins retire age hstatusg hhincome educyear married hisp       // garder seul
 estpost tabstat ins retire age hstatusg hhincome educyear married hisp, /* 
  */  statistics( mean sd min max ) /* 
  */  columns(variables)
-esttab using myfile.tex,  /* 
+*esttab using myfile.tex,  /* 
  */ cells("ins retire age hstatusg hhincome educyear married hisp") /* 
  */  replace nonum noobs
 
@@ -34,7 +34,7 @@ sum yhat
                       
 scatter yhat hhincome , graphregion(color(white)) xtitle("Household income") ytitle("Estimated probability") yline(0) yline(1)                   // nuage de point (valeur prédite, household income)  
 scatter res yhat  , name(g2) graphregion(color(white)) xline(0) xline(1) xtitle("Linear prediction (Estimated probability)")                              // Q: Est-ce que l'ampleur des résidus est indépendante de l'observation ? Conclusion ?
-rvfplot     ,  graphregion(color(white))                                  // commande rapide pour faire scatter res yhat sans générer vous même res et yhat
+rvfplot         , graphregion(color(white))                              // commande rapide pour faire scatter res yhat sans générer vous même res et yhat
 
 
 eststo: logit ins retire age hstatusg hhincome educyear married hisp  
@@ -59,7 +59,7 @@ eststo: margins, dydx(*) atmeans post
 reg ins retire age hstatusg hhincome educyear married hisp
 eststo: margins, dydx(*) atmeans post
 
-esttab using result_mem.tex, se wide replace
+*esttab using result_mem.tex, se wide replace
 
 
 
@@ -75,7 +75,7 @@ eststo: margins, dydx(*)  post
 reg ins retire age hstatusg hhincome educyear married hisp
 eststo: margins, dydx(*)  post
 
-esttab using result_ame.tex, se wide replace
+*esttab using result_ame.tex, se wide replace
 
 
 
